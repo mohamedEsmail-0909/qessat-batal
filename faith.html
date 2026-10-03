@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>دروس إيمانية | قصة بطل</title>
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- رأس الموقع -->
+    <header class="header">
+
+        <button id="menu-button" class="menu-button"
+            aria-label="فتح القائمة" aria-expanded="false">
+            <span>‹</span>
+        </button>
+
+        <div class="site-brand">
+            <img src="logo.png" alt="شعار قصة بطل">
+
+            <div class="site-title">
+                <h1>قصة بطل</h1>
+                <p>نحكي تاريخهم... لنستعد طريقنا</p>
+            </div>
+        </div>
+
+        <!-- مفتاح الوضع الليلي والنهاري -->
+        <button id="theme-switch" class="theme-switch" aria-label="تغيير الوضع">
+
+            <span class="switch-icon sun-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+            </span>
+
+            <span class="switch-icon moon-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z"></path>
+                </svg>
+            </span>
+
+            <span class="switch-circle">
+                <svg class="active-sun" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+
+                <svg class="active-moon" viewBox="0 0 24 24">
+                    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z"></path>
+                </svg>
+            </span>
+        </button>
+    </header>
+
+    <!-- القائمة الجانبية -->
+    <aside id="side-menu" class="side-menu">
+        <div class="side-menu-header">
+            <h2>أقسام الموقع</h2>
+        </div>
+
+        <nav class="side-menu-links">
+
+    <a href="index.html">
+        <span>🏠</span>
+        <strong>الواجهة الرئيسية</strong>
+    </a>
+
+    <a href="companions.html">
+        <span>⚔️</span>
+        <strong>قصص الصحابة</strong>
+    </a>
+
+    <a href="faith.html">
+        <span>✦</span>
+        <strong>دروس إيمانية</strong>
+    </a>
+
+    <a href="ramadan.html">
+        <span>☪️</span>
+        <strong>قصص رمضان</strong>
+    </a>
+
+</nav>
+    </aside>
+
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+
+    <!-- المحتوى الرئيسي -->
+    <main>
+
+        <!-- مقدمة القسم -->
+        <section class="hero">
+
+            <span class="hero-label">محمد إسماعيل</span>
+
+            <h2>دروس إيمانية</h2>
+
+            <p>
+                وقفات إيمانية من حياتنا، نتأمل فيها معاني الرضا والصبر
+                والدعاء والتوكل على الله، لعلها تكون نورًا يضيء لنا الطريق.
+            </p>
+
+            <a href="#episodes" class="hero-button">
+                تصفح الدروس
+            </a>
+
+        </section>
+
+
+        <!-- الحلقات -->
+        <section class="section" id="episodes">
+
+            <div class="section-heading">
+
+                <div>
+                    <h2>الدروس الإيمانية</h2>
+                    <p>أربع وقفات إيمانية</p>
+                </div>
+            </div>
+
+
+            <div class="stories">
+
+
+                <!-- الحلقة الرابعة -->
+                <article class="story-card">
+                    <div class="story-content">
+
+                        <span class="story-category">
+                            الحلقة 4 والأخيرة
+                        </span>
+
+                        <h3>التوكل على الله 🤍</h3>
+
+                        <p class="episode-description">
+                            خذ بالأسباب، وعلّق قلبك بالله، فهو سبحانه خير وكيل.
+                        </p>
+
+                        <a
+                            href="https://www.facebook.com/share/v/1GKzvDD8Et/"
+                            class="story-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            مشاهدة الحلقة
+                        </a>
+
+                    </div>
+                </article>
+
+
+                <!-- الحلقة الثالثة -->
+                <article class="story-card">
+                    <div class="story-content">
+
+                        <span class="story-category">
+                            الحلقة 3
+                        </span>
+
+                        <h3>الصبر… مفتاح الفرج 🤍</h3>
+
+                        <p class="episode-description">
+                            مع الصبر يأتي الفرج، وبالثقة في الله تهون الصعاب.
+                        </p>
+
+                        <a
+                            href="https://www.facebook.com/share/v/1DV7GaJE47/"
+                            class="story-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            مشاهدة الحلقة
+                        </a>
+
+                    </div>
+                </article>
+
+
+                <!-- الحلقة الثانية -->
+                <article class="story-card">
+                    <div class="story-content">
+
+                        <span class="story-category">
+                            الحلقة 2
+                        </span>
+
+                        <h3>الدعاء… بين اليأس والفرج 🤍</h3>
+
+                        <p class="episode-description">
+                            لا ينقطع رجاء المؤمن في رحمة الله، فالدعاء باب للأمل.
+                        </p>
+
+                        <a
+                            href="https://www.facebook.com/share/v/1FJyZtEPno/"
+                            class="story-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            مشاهدة الحلقة
+                        </a>
+
+                    </div>
+                </article>
+
+
+                <!-- الحلقة الأولى -->
+                <article class="story-card">
+                    <div class="story-content">
+
+                        <span class="story-category">
+                            الحلقة 1
+                        </span>
+
+                        <h3>لعلّه خير… حكمة ربنا اللي بتظهر متأخر 🤍</h3>
+
+                        <p class="episode-description">
+                            أحيانًا لا ندرك الحكمة إلا بعد مرور الوقت،
+                            وحسن الظن بالله يطمئن القلب.
+                        </p>
+
+                        <a
+                            href="https://www.facebook.com/share/v/17pb5KjEqY/"
+                            class="story-button"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                        >
+                            مشاهدة الحلقة
+                        </a>
+
+                    </div>
+                </article>
+
+
+            </div>
+        </section>
+
+    </main>
+
+
+<!-- تذييل الموقع -->
+    <footer class="footer">
+        <img src="logo.png" alt="شعار قصة بطل" class="footer-logo">
+
+        <h2>قصة بطل</h2>
+
+        <p>نحكي تاريخهم... لنستعد طريقنا</p>
+
+        <div class="social-links">
+            <a
+                href="https://youtube.com/@qessat_batal?si=eOJLXFC_hpmh3WaE"
+                target="_blank"
+                rel="noopener noreferrer">
+                YouTube
+            </a>
+
+            <a
+                href="https://www.tiktok.com/@mohamedesmail0909"
+                target="_blank"
+                rel="noopener noreferrer">
+                TikTok
+            </a>
+        </div>
+
+        <p class="copyright">© 2026 قصة بطل</p>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+
+</html>
