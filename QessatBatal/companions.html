@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>قصص الصحابة | قصة بطل</title>
+    <meta name="description" content="اكتشف قصص الصحابة ومواقفهم في قناة قصة بطل.">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+
+    <!-- رأس الموقع -->
+    <header class="header">
+
+        <button id="menu-button" class="menu-button"
+            aria-label="فتح القائمة" aria-expanded="false">
+            <span>‹</span>
+        </button>
+
+        <div class="site-brand">
+            <img src="logo.png" alt="شعار قصة بطل">
+
+            <div class="site-title">
+                <h1>قصة بطل</h1>
+                <p>نحكي تاريخهم... لنستعد طريقنا</p>
+            </div>
+        </div>
+
+        <!-- مفتاح الليل والنهار -->
+        <button id="theme-switch" class="theme-switch" aria-label="تغيير الوضع">
+
+            <span class="switch-icon sun-icon">
+                <svg viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+            </span>
+
+            <span class="switch-icon moon-icon">
+                <svg viewBox="0 0 24 24">
+                    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z"></path>
+                </svg>
+            </span>
+
+            <span class="switch-circle">
+                <svg class="active-sun" viewBox="0 0 24 24">
+                    <circle cx="12" cy="12" r="4"></circle>
+                    <path d="M12 2v2"></path>
+                    <path d="M12 20v2"></path>
+                    <path d="M2 12h2"></path>
+                    <path d="M20 12h2"></path>
+                    <path d="m4.93 4.93 1.41 1.41"></path>
+                    <path d="m17.66 17.66 1.41 1.41"></path>
+                    <path d="m6.34 17.66-1.41 1.41"></path>
+                    <path d="m19.07 4.93-1.41 1.41"></path>
+                </svg>
+
+                <svg class="active-moon" viewBox="0 0 24 24">
+                    <path d="M21 12.8A8.5 8.5 0 1 1 11.2 3 6.5 6.5 0 0 0 21 12.8Z"></path>
+                </svg>
+            </span>
+        </button>
+
+    </header>
+
+    <!-- القائمة الجانبية -->
+    <aside id="side-menu" class="side-menu">
+
+        <div class="side-menu-header">
+            <h2>أقسام الموقع</h2>
+        </div>
+
+        <nav class="side-menu-links">
+    <a href="index.html">
+        <span>🏠</span>
+        <strong>الواجهة الرئيسية</strong>
+    </a>
+
+    <a href="companions.html">
+        <span>⚔️</span>
+        <strong>قصص الصحابة</strong>
+    </a>
+
+    <a href="faith.html">
+        <span>✦</span>
+        <strong>دروس إيمانية</strong>
+    </a>
+
+    <a href="ramadan.html">
+        <span>☪️</span>
+        <strong>قصص رمضان</strong>
+    </a>
+</nav>
+    </aside>
+
+    <div id="menu-overlay" class="menu-overlay"></div>
+
+    <!-- محتوى الصفحة -->
+    <main>
+
+        <section class="hero">
+            <div class="hero-content">
+                <span class="hero-label">محمد إسماعيل</span>
+
+                <h2>قصص الصحابة</h2>
+
+                <p>
+                    حكايات من حياة أصحاب رسول الله ﷺ،
+                    ومواقف خالدة نتعلم منها ونستلهم معانيها.
+                </p>
+
+                <a href="#episodes" class="hero-button">
+                    تصفح الحلقات
+                </a>
+            </div>
+        </section>
+
+        <!-- قائمة حلقات قصص الصحابة -->
+<section class="section" id="episodes">
+
+    <div class="section-heading">
+        <span class="section-line"></span>
+        <h2>حلقات قصص الصحابة</h2>
+        <span class="section-line"></span>
+    </div>
+
+    <p class="section-intro">
+        تابع قصص الصحابة، واكتشف مواقفهم وسيرتهم.
+    </p>
+
+    <div class="stories">
+
+        <!-- EPISODES_START -->
+
+        <!-- أبو بكر الصديق - الجزء الثالث -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">أبو بكر الصديق رضي الله عنه</span>
+                <h3>الجميع اعترض... لكنه أصرّ على قراره!</h3>
+                <p class="episode-description">الجزء الثالث والأخير</p>
+                <a href="https://www.facebook.com/share/v/1DpKXE247Q/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- أبو بكر الصديق - الجزء الثاني -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">أبو بكر الصديق رضي الله عنه</span>
+                <h3>أنفق كل ما يملك... فلماذا؟</h3>
+                <p class="episode-description">الجزء الثاني</p>
+                <a href="https://www.facebook.com/share/v/1VxCyqMNDr/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- أبو بكر الصديق - الجزء الأول -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">أبو بكر الصديق رضي الله عنه</span>
+                <h3>لم يكن خائفًا على نفسه... بل على غيره! فمن هو؟</h3>
+                <p class="episode-description">الجزء الأول</p>
+                <a href="https://www.facebook.com/share/v/19a155gAfN/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عبدالرحمن بن عوف -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عبدالرحمن بن عوف رضي الله عنه</span>
+                <h3>من الفقر إلى الثراء... وبقي كما هو!</h3>
+                <a href="https://www.facebook.com/share/v/1FKwQbidU6/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- أبو عبيدة بن الجراح -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">أبو عبيدة بن الجراح رضي الله عنه</span>
+                <h3>الرجل الذي اختاره النبي ﷺ ليكون أمين الأمة! 😳</h3>
+                <a href="https://www.facebook.com/share/v/1By2fJR2dv/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- سعد بن أبي وقاص -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">سعد بن أبي وقاص رضي الله عنه</span>
+                <h3>لما أقرب الناس ليك يحاربوا إيمانك... تعمل إيه؟! 😳</h3>
+                <a href="https://www.facebook.com/share/r/19Q9iHhBVY/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- نعيم بن مسعود -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">نعيم بن مسعود رضي الله عنه</span>
+                <h3>كيف هزم المسلمين الأحزاب بلا قتال؟</h3>
+                <a href="https://www.facebook.com/share/r/1DfghwV4xK/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عمرو بن الجموح -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عمرو بن الجموح رضي الله عنه</span>
+                <h3>خرج بساقٍ عرجاء... وعاد إلى الجنة!</h3>
+                <a href="https://www.facebook.com/share/v/19UWgFrsC2/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- مصعب بن عمير -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">مصعب بن عمير رضي الله عنه</span>
+                <h3>الشاب الذي ترك الدنيا كلها... ومات بلا كفن!</h3>
+                <a href="https://www.facebook.com/share/v/19MPxWsMzC/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عمير بن وهب -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عمير بن وهب رضي الله عنه</span>
+                <h3>خرج يقتل النبي... فعاد صحابيًا! 😮</h3>
+                <a href="https://www.facebook.com/share/v/1Z96j1GyDt/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عبدالله بن أنيس -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عبدالله بن أُنَيْس رضي الله عنه</span>
+                <h3>رجل أوقف جيشًا كاملًا! 😳</h3>
+                <a href="https://www.facebook.com/share/v/19m6FgYMzq/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- كعب بن مالك -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">كعب بن مالك رضي الله عنه</span>
+                <h3>خمسون يومًا... حتى نزلت توبته من السماء! ☁️🤍</h3>
+                <a href="https://www.facebook.com/share/v/1N3Koa5eNY/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- أنس بن النضر -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">أنس بن النضر رضي الله عنه</span>
+                <h3>الصحابي الذي شمَّ رائحة الجنة قبل أن يدخلها! 🤍</h3>
+                <a href="https://www.facebook.com/share/v/1EnwUPzgrp/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عمير بن الحمام -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عمير بن الحمام رضي الله عنه</span>
+                <h3>🏹 رَمَى التمرات ومشى!</h3>
+                <a href="https://www.facebook.com/share/v/18dCtpPD6Z/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عبدالله بن حذافة -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عبدالله بن حذافة رضي الله عنه</span>
+                <h3>ملك الروم عرض عليه نصف مملكته... فرفض! 🔥</h3>
+                <a href="https://www.facebook.com/share/v/1Z7eceEyCZ/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- حنظلة بن أبي عامر -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">حنظلة بن أبي عامر الأنصاري رضي الله عنه</span>
+                <h3>😳 لماذا غسلت الملائكة هذا الصحابي؟</h3>
+                <a href="https://www.facebook.com/share/v/1HYmq52BGJ/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- البراء بن مالك -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">البراء بن مالك رضي الله عنه</span>
+                <h3>🔥 الصحابي الذي ألقى بنفسه وسط الموت!</h3>
+                <a href="https://www.facebook.com/share/v/1JhCuPZCnS/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- خبيب بن عدي -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">خبيب بن عدي رضي الله عنه</span>
+                <h3>الصحابي الذي مات... وهو يبتسم! ⚔️🤍</h3>
+                <a href="https://www.facebook.com/share/v/1Goh9jcTys/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- خالد بن الوليد -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">خالد بن الوليد رضي الله عنه</span>
+                <h3>سيف الله المسلول ⚔️🤍</h3>
+                <a href="https://www.facebook.com/share/v/1JLDMHiGxn/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- عمر بن الخطاب -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">عمر بن الخطاب رضي الله عنه</span>
+                <h3>خرج يقتل النبي… فعاد ينصر الإسلام! ⚔️🤍</h3>
+                <a href="https://www.facebook.com/share/v/1CBvgrA7Do/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- حمزة بن عبدالمطلب -->
+        <article class="story-card">
+            <div class="story-content">
+                <span class="story-category">حمزة بن عبدالمطلب رضي الله عنه</span>
+                <h3>من صيد إلى إيمان… قصة أسد الله 🏹🤍</h3>
+                <a href="https://www.facebook.com/share/v/1CPHobpvZP/"
+                   class="story-button" target="_blank" rel="noopener noreferrer">
+                    مشاهدة الحلقة
+                </a>
+            </div>
+        </article>
+
+        <!-- EPISODES_END -->
+
+    </div>
+</section>
+
+    <!-- تذييل الموقع -->
+    <footer class="footer">
+
+        <img src="logo.png" alt="شعار قصة بطل" class="footer-logo">
+
+        <h2>قصة بطل</h2>
+
+        <p>نحكي تاريخهم... لنستعد طريقنا</p>
+
+        <div class="social-links">
+
+            <a
+                href="https://youtube.com/@qessat_batal?si=eOJLXFC_hpmh3WaE"
+                target="_blank"
+                rel="noopener noreferrer">
+                YouTube
+            </a>
+
+            <a
+                href="https://www.tiktok.com/@mohamedesmail0909"
+                target="_blank"
+                rel="noopener noreferrer">
+                TikTok
+            </a>
+
+        </div>
+
+        <p class="copyright">© 2026 قصة بطل</p>
+
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+</html>
