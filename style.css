@@ -1,3 +1,10 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* إلغاء المربع الأزرق تماماً */
+}
+
 /* =========================
    الأساس
 ========================= */
@@ -244,49 +251,79 @@ body.menu-open .side-menu {
 }
 
 
+/* =========================
+   تنسيق روابط القائمة الجانبية (معدل)
+========================= */
+
+/* =========================
+   روابط القائمة الجانبية (مع إرجاع الحركة والأنيميشن)
+========================= */
+
 .side-menu-links a {
     display: flex;
-
     align-items: center;
-
     gap: 16px;
-
-    padding: 17px 14px;
-
-    margin-bottom: 8px;
-
-    border-radius: 12px;
-
-    color: #292929;
-
+    padding: 16px 18px;
+    margin-bottom: 10px;
+    border-radius: 14px;
+    color: #111111; /* لون النص في وضع النهار */
     text-decoration: none;
-
-    font-size: 19px;
-
+    font-size: 18px;
     font-weight: 700;
-
-    transition:
-        background 0.25s ease,
-        color 0.25s ease,
-        padding-right 0.25s ease;
+    -webkit-tap-highlight-color: transparent;
+    outline: none;
+    /* حركة ناعمة ومحترفة للتنقل والتمدد */
+    transition: background 0.25s ease, color 0.25s ease, padding-right 0.25s ease, transform 0.25s ease;
 }
 
-
-.side-menu-links a span {
-    width: 30px;
-
-    text-align: center;
-
-    font-size: 22px;
+/* لون الأيقونة في النهار */
+.side-menu-links a svg {
+    width: 24px;
+    height: 24px;
+    fill: #111111;
+    transition: fill 0.25s ease;
 }
 
+/* التفاعل عند الوقوف بالماوس (Hover / Active) في النهار */
+.side-menu-links a:hover,
+.side-menu-links a:active,
+.side-menu-links a:focus {
+    background: #b88920 !important;
+    color: #ffffff !important;
+    padding-right: 25px !important; /* التحرك والتمدد للخارج زى زمان */
+}
 
-.side-menu-links a:hover {
-    background: #b88920;
+.side-menu-links a:hover svg,
+.side-menu-links a:active svg,
+.side-menu-links a:focus svg {
+    fill: #ffffff !important;
+}
 
-    color: white;
+/* =========================
+   الوضع الليلي (Dark Mode)
+========================= */
 
-    padding-right: 23px;
+body.dark .side-menu-links a {
+    color: #ffffff; /* لون النص بالليل */
+}
+
+body.dark .side-menu-links a svg {
+    fill: #ffffff; /* لون الأيقونة بالليل */
+}
+
+/* التفاعل عند الوقوف بالماوس في الليل */
+body.dark .side-menu-links a:hover,
+body.dark .side-menu-links a:active,
+body.dark .side-menu-links a:focus {
+    background: #f1d064 !important;
+    color: #111111 !important;
+    padding-right: 25px !important; /* التحرك والتمدد للخارج */
+}
+
+body.dark .side-menu-links a:hover svg,
+body.dark .side-menu-links a:active svg,
+body.dark .side-menu-links a:focus svg {
+    fill: #111111 !important;
 }
 
 
@@ -321,28 +358,43 @@ body.menu-open .menu-overlay {
 
 
 /* =========================
-   مفتاح الليل والنهار
+   مفتاح الوضع الليلي والنهاري (مضبوط بالمسافات والحركة)
 ========================= */
 
 .theme-switch {
     position: relative;
-
     width: 94px;
     height: 46px;
-
     border: 2px solid #b88920;
-
     border-radius: 30px;
-
     background: #252525;
-
     padding: 0;
-
     cursor: pointer;
-
     overflow: hidden;
-
+    outline: none;
+    -webkit-tap-highlight-color: transparent;
     z-index: 3100;
+}
+
+/* مكان الأيقونات الخفية تحت الدائرة */
+.sun-icon {
+    position: absolute;
+    top: 50%;
+    left: 8px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.moon-icon {
+    position: absolute;
+    top: 50%;
+    right: 8px;
+    transform: translateY(-50%);
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 
@@ -391,32 +443,33 @@ body.menu-open .menu-overlay {
 }
 
 
+
+/* الدائرة الملونة المتحركة */
 .switch-circle {
     position: absolute;
-
-    top: 3px;
-    left: 3px;
-
+    top: 2px;
+    left: 2px;
     width: 38px;
     height: 38px;
-
     border-radius: 50%;
-
     display: flex;
-
     align-items: center;
     justify-content: center;
-
     z-index: 3;
-
     background: #f1d064;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.35);
+    /* حركة إيزي إن وإيزي أوت ناعمة ومظبوطة جداً */
+    transition: left 0.4s cubic-bezier(0.4, 0, 0.2, 1), background 0.35s ease;
+}
 
-    box-shadow:
-        0 2px 8px rgba(0, 0, 0, 0.35);
+/* عند التحويل للوضع الليلي: الدائرة بتروح لآخر اليمين تماماً */
+body.dark .switch-circle {
+    left: 50px; /* المسافة المظبوطة للوصول للطرف الأيمن فوق القمر */
+    background: #f1d064; }
 
-    transition:
-        left 0.35s cubic-bezier(.4, .8, .2, 1),
-        background 0.35s ease;
+body.dark .switch-circle {
+    left: 60px; /* يتحرك لمسافة أعرض مناسبة */
+    background: #f1d064;
 }
 
 
