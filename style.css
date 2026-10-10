@@ -1907,3 +1907,14 @@ body.dark .moon-icon {
         height: 65px;
     }
 }
+/* =========================
+   تصغير وتحدير مقاس أيقونات القائمة على الموبايل والكمبيوتر
+========================= */
+
+.side-menu-links a svg {
+    width: 24px !important;
+    height: 24px !important;
+    min-width: 24px;
+    min-height: 24px;
+    flex-shrink: 0;
+}
