@@ -1912,9 +1912,89 @@ body.dark .moon-icon {
 ========================= */
 
 .side-menu-links a svg {
+
     width: 24px !important;
+
     height: 24px !important;
+
     min-width: 24px;
+
     min-height: 24px;
+    
     flex-shrink: 0;
+}
+/* =========================================================
+   تنسيق القائمة الجانبية وألوانها المتناسقة مع هوية الموقع
+========================================================= */
+
+/* خلفية القائمة الجانبية في النهار والليل */
+.side-menu {
+    background: #f7f3e8; /* لون بيج هادئ متناسق مع الموقع */
+    border-left: 3px solid #b88920;
+}
+
+body.dark .side-menu {
+    background: #171717; /* لون داكن فخم للوضع الليلي */
+    border-color: #d2a63c;
+}
+
+/* عنوان "أقسام الموقع" داخل القائمة */
+.side-menu-header h2 {
+    color: #4a3c18 !important; /* لون بني ذهبي غامق وواضح في النهار */
+}
+
+body.dark .side-menu-header h2 {
+    color: #f4d477 !important; /* لون ذهبي فاتح وواضح في الليل */
+}
+
+/* روابط الأقسام في القائمة (الوضع العادي) */
+.side-menu-links a {
+    color: #3a2e12 !important; /* لون نص بني ذهبي داكن وراقي */
+    background: rgba(184, 137, 32, 0.08); /* خلفية خفيفة جداً تظهر الأزرار بشكل مرتب */
+    border: 1px solid rgba(184, 137, 32, 0.2);
+}
+
+.side-menu-links a svg {
+    fill: #b88920 !important; /* الأيقونة باللون الذهبي المتناسق */
+}
+
+/* روابط الأقسام في القائمة (الوضع الليلي) */
+body.dark .side-menu-links a {
+    color: #f1d064 !important; /* لون نص ذهبي فاتح وجميل في الليل */
+    background: rgba(241, 208, 100, 0.07);
+    border: 1px solid rgba(241, 208, 100, 0.2);
+}
+
+body.dark .side-menu-links a svg {
+    fill: #f1d064 !important; /* الأيقونة باللون الذهبي الفاتح بالليل */
+}
+
+/* التفاعل عند الوقوف بالماوس أو الضغط (Hover / Active) في النهار */
+.side-menu-links a:hover,
+.side-menu-links a:active,
+.side-menu-links a:focus {
+    background: #b88920 !important; /* ذهبي غامق فخم */
+    color: #ffffff !important; /* النص أبيض صافي وعالي التباين */
+    padding-right: 25px !important;
+}
+
+.side-menu-links a:hover svg,
+.side-menu-links a:active svg,
+.side-menu-links a:focus svg {
+    fill: #ffffff !important; /* الأيقونة بيضاء تماماً عند اللمس */
+}
+
+/* التفاعل عند الوقوف بالماوس أو الضغط في الوضع الليلي */
+body.dark .side-menu-links a:hover,
+body.dark .side-menu-links a:active,
+body.dark .side-menu-links a:focus {
+    background: #f1d064 !important; /* ذهبي فاتح ومضيء في الليل */
+    color: #171717 !important; /* النص يقلب لون داكن نقي عشان يظهر بوضوح فوق الذهبي الفاتح */
+    padding-right: 25px !important;
+}
+
+body.dark .side-menu-links a:hover svg,
+body.dark .side-menu-links a:active svg,
+body.dark .side-menu-links a:focus svg {
+    fill: #171717 !important; /* الأيقونة تقلب لون داكن نقي للتناسق */
 }
