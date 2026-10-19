@@ -1998,72 +1998,65 @@ body.dark .side-menu-links a:active svg,
 body.dark .side-menu-links a:focus svg {
     fill: #171717 !important; /* الأيقونة تقلب لون داكن نقي للتناسق */
 }
-
 /* =========================================================
-   إصلاح الطبقات المظلمة والهيدر والقائمة الجانبية
+   إصلاح الطبقة السوداء والقائمة الجانبية لتظهر بوضوح تام
 ========================================================= */
 
-/* 1. إبقاء الهيدر في أعلى كل الطبقات منور ونظيف */
+/* 1. جعل الهيدر أعلى طبقة في الموقع ليبقى واضحاً دائماً */
 .header {
     position: sticky !important;
     top: 0 !important;
-    z-index: 4000 !important; /* أعلى من الطبقة المظلمة والقائمة */
-    background: #f7f3e8 !important; /* لون فاتح نقي في النهار */
+    z-index: 5000 !important; /* أعلى شيء في الصفحة */
 }
 
-body.dark .header {
-    background: #171717 !important; /* لون داكن نقي بالليل */
-}
-
-/* 2. ضبط القائمة الجانبية لتكون تحت الهيدر مباشرة وبألوانها الذهبية والبيج */
+/* 2. ضبط القائمة الجانبية تحت الهيدر بوضوح ونظافة */
 .side-menu {
     position: fixed !important;
     top: 92px !important;
     right: 0 !important;
     width: 320px !important;
     height: calc(100vh - 92px) !important;
-    padding: 30px 28px 30px !important;
-    background: #f7f3e8 !important; /* خلفية بيج فاتحة ونظيفة */
+    padding: 25px 22px !important;
+    background: #f7f3e8 !important; /* لون الخلفية البيج المريح الناصع */
     border-left: 3px solid #b88920 !important;
-    z-index: 3500 !important; /* تحت الهيدر وفوق الطبقة المظلمة */
+    box-shadow: -10px 0 25px rgba(0, 0, 0, 0.15) !important;
+    z-index: 4500 !important; /* فوق الطبقة السوداء وتحت الهيدر */
 }
 
-body.dark .side-menu {
-    background: #171717 !important;
-    border-color: #d2a63c !important;
-}
-
-/* 3. الطبقة المظلمة تكون خلف الهيدر والقائمة فقط لتعتيم باقي خلفية الموقع */
+/* 3. إصلاح الطبقة السوداء الخلفية لتكون خلف القائمة وتحت الهيدر فقط */
 .menu-overlay {
     position: fixed !important;
-    top: 92px !important; /* تبدأ بعد الهيدر عشان متغطبش الهيدر */
+    top: 92px !important; /* تبدأ أسفل الهيدر */
     left: 0 !important;
     right: 0 !important;
     bottom: 0 !important;
-    background: rgba(0, 0, 0, 0.4) !important;
-    z-index: 2000 !important; /* خلف القائمة والهيدر */
+    background: rgba(0, 0, 0, 0.4) !important; /* تعتيم خفيف ورايق لباقي الموقع */
+    z-index: 4000 !important; /* تحت القائمة الجانبية */
 }
 
-/* 4. تثبيت زر القائمة وزر الليل/النهار داخل الهيدر */
+/* 4. تثبيت زر القائمة في الهيدر */
 .menu-button {
     position: absolute !important;
     top: 50% !important;
     right: 20px !important;
     transform: translateY(-50%) !important;
-    z-index: 4100 !important;
+    z-index: 5100 !important;
 }
 
 body.menu-open .menu-button {
     right: 20px !important;
 }
 
-/* 5. ضبط أبعاد الموبايل */
+/* 5. التوافق المباشر مع شاشات الموبايل */
 @media (max-width: 700px) {
+    .header {
+        height: 82px !important;
+    }
+
     .side-menu {
         top: 82px !important;
         height: calc(100vh - 82px) !important;
         width: 285px !important;
-        padding: 25px 22px !important;
     }
 
     .menu-overlay {
@@ -2076,28 +2069,5 @@ body.menu-open .menu-button {
 
     body.menu-open .menu-button {
         right: 12px !important;
-    }
-}
-
-/* =========================================================
-   إلغاء الفاصل تماماً على الهواتف المحمولة
-========================================================= */
-
-@media (max-width: 700px) {
-    /* ضبط الهيدر ليكون بارتفاع ثابت ودقيق على الموبايل */
-    .header {
-        height: 75px !important;
-        padding: 6px 12px !important;
-    }
-
-    /* إلغاء الـ top تماماً وتثبيت القائمة لتلمس الهيدر مباشرة بدون أي فراغ */
-    .side-menu {
-        top: 75px !important;
-        height: calc(100vh - 75px) !important;
-        padding-top: 15px !important;
-    }
-
-    .menu-overlay {
-        top: 75px !important;
     }
 }
