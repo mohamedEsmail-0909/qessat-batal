@@ -2059,9 +2059,33 @@ body.menu-open .menu-button {
 
 /* 5. ضبط أبعاد الموبايل */
 @media (max-width: 700px) {
-    side-menu {
+    .side-menu {
+        top: 82px !important;
+        height: calc(100vh - 82px) !important;
+        width: 285px !important;
+        padding: 25px 22px !important;
+    }
+
+    .menu-overlay {
+        top: 82px !important;
+    }
+
+    .menu-button {
+        right: 12px !important;
+    }
+
+    body.menu-open .menu-button {
+        right: 12px !important;
+    }
+}
+/* =========================================================
+   إلغاء الفاصل بين الهيدر والقائمة الجانبية تماماً
+========================================================= */
+
+/* للكمبيوتر والشاشات الكبيرة */
+.side-menu {
     top: 91px !important; /* تقليل 1px لضمان الالتصاق التام بالخط السفلي للهيدر */
-    height: calc(100vh - 91px) !important;}
+    height: calc(100vh - 91px) !important;
 }
 
 /* للموبايل والشاشات الصغيرة */
@@ -2069,9 +2093,10 @@ body.menu-open .menu-button {
     .side-menu {
         top: 74px !important; /* ضبط المسافة لتقفل الفراغ العلوي على الموبايل */
         height: calc(100vh - 74px) !important;
-        padding-top: 20px !important; /* تقليل المسافة الداخلية العلوية لترتيب العناصر */}
+        padding-top: 20px !important; /* تقليل المسافة الداخلية العلوية لترتيب العناصر */
     }
 
     .menu-overlay {
         top: 74px !important;
     }
+}
