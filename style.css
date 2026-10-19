@@ -2078,25 +2078,26 @@ body.menu-open .menu-button {
         right: 12px !important;
     }
 }
+
 /* =========================================================
-   إلغاء الفاصل بين الهيدر والقائمة الجانبية تماماً
+   إلغاء الفاصل تماماً على الهواتف المحمولة
 ========================================================= */
 
-/* للكمبيوتر والشاشات الكبيرة */
-.side-menu {
-    top: 91px !important; /* تقليل 1px لضمان الالتصاق التام بالخط السفلي للهيدر */
-    height: calc(100vh - 91px) !important;
-}
-
-/* للموبايل والشاشات الصغيرة */
 @media (max-width: 700px) {
+    /* ضبط الهيدر ليكون بارتفاع ثابت ودقيق على الموبايل */
+    .header {
+        height: 75px !important;
+        padding: 6px 12px !important;
+    }
+
+    /* إلغاء الـ top تماماً وتثبيت القائمة لتلمس الهيدر مباشرة بدون أي فراغ */
     .side-menu {
-        top: 74px !important; /* ضبط المسافة لتقفل الفراغ العلوي على الموبايل */
-        height: calc(100vh - 74px) !important;
-        padding-top: 20px !important; /* تقليل المسافة الداخلية العلوية لترتيب العناصر */
+        top: 75px !important;
+        height: calc(100vh - 75px) !important;
+        padding-top: 15px !important;
     }
 
     .menu-overlay {
-        top: 74px !important;
+        top: 75px !important;
     }
 }
