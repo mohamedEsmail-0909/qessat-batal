@@ -71,7 +71,13 @@ document.addEventListener("keydown", function (event) {
 const themeSwitch = document.getElementById("theme-switch");
 
 // قراءة الوضع المحفوظ عند فتح أي صفحة
-if (readStorage("theme") === "dark") {
+// لو مفيش اختيار محفوظ (جهاز جديد مثلًا) بنمشي على وضع التليفون نفسه
+var savedTheme = readStorage("theme");
+
+var phoneIsDark = !!(window.matchMedia &&
+    window.matchMedia("(prefers-color-scheme: dark)").matches);
+
+if (savedTheme === "dark" || (savedTheme === null && phoneIsDark)) {
     document.body.classList.add("dark");
 }
 

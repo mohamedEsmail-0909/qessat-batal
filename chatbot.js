@@ -134,6 +134,7 @@
     // ---------- الشكل ----------
 
     var css = [
+        '@import url("https://fonts.googleapis.com/css2?family=Tajawal:wght@400;500;700;800&display=swap");body .cb-panel,body .cb-teaser{font-family:"Tajawal",Tahoma,Arial,sans-serif}',
         ':root{--cb-gold:#b88920;--cb-gold-2:#d2a63c;--cb-gold-3:#f1d064;--cb-glass:rgba(247,243,232,.78);--cb-solid:rgba(247,243,232,.97);--cb-bot:rgba(255,253,246,.96);--cb-line:rgba(184,137,32,.45);--cb-text:#292929;--cb-sub:rgba(0,0,0,.5);--cb-chip-text:#8a6512;--cb-chip-bg:rgba(255,255,255,.6);--cb-tray:rgba(255,255,255,.3)}',
         'body.dark{--cb-glass:rgba(23,23,23,.8);--cb-solid:rgba(23,23,23,.98);--cb-bot:#26231b;--cb-line:rgba(241,208,100,.4);--cb-text:#eee;--cb-sub:rgba(255,255,255,.5);--cb-chip-text:#f1d064;--cb-chip-bg:rgba(241,208,100,.08);--cb-tray:rgba(0,0,0,.3)}',
 
@@ -155,13 +156,12 @@
         '.cb-teaser::after{content:"";position:absolute;bottom:-7px;left:24px;width:12px;height:12px;background:inherit;border-right:1px solid var(--cb-line);border-bottom:1px solid var(--cb-line);transform:rotate(45deg)}',
         '.cb-teaser.cb-show{display:block;animation:cb-msg-in .55s cubic-bezier(.34,1.56,.64,1)}',
 
-        /* فقاعات الفتح (بتكبر لحد ما تبقى الشات) */
-        '.cb-trail{position:fixed;z-index:3001;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95),rgba(241,208,100,.6) 45%,rgba(184,137,32,.4));border:1px solid rgba(255,255,255,.75);box-shadow:inset -2px -3px 7px rgba(184,137,32,.3),0 4px 14px rgba(184,137,32,.25);animation:cb-trail-in .45s cubic-bezier(.34,1.56,.64,1) both}',
-        '.cb-trail.cb-trail-out{animation:cb-trail-out .55s ease forwards}',
-        '.cb-trail.cb-trail-out.cb-trail-last{animation:cb-trail-last .6s ease forwards}',
+        /* فقاعات الأحلام: بتكبر وتفضل ظاهرة لحد ما الشات يتقفل */
+        '.cb-trail{position:fixed;z-index:3001;border-radius:50%;pointer-events:none;background:radial-gradient(circle at 30% 28%,rgba(255,255,255,.95),rgba(241,208,100,.6) 45%,rgba(184,137,32,.4));border:1px solid rgba(255,255,255,.75);box-shadow:inset -2px -3px 7px rgba(184,137,32,.3),0 4px 14px rgba(184,137,32,.25);animation:cb-trail-in .45s cubic-bezier(.34,1.56,.64,1) both,cb-trail-float 3.6s ease-in-out infinite}',
+        '.cb-trail.cb-trail-out{animation:cb-trail-out .35s ease-in forwards}',
 
         /* الصندوق الزجاجي */
-        '.cb-panel{position:fixed;bottom:92px;left:20px;z-index:3000;width:360px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 200px);max-height:calc(100dvh - 200px);display:flex;flex-direction:column;overflow:hidden;direction:rtl;font-family:inherit;color:var(--cb-text);background:var(--cb-glass);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid var(--cb-line);box-shadow:0 22px 55px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);transform-origin:bottom left;opacity:0;visibility:hidden;pointer-events:none;transform:scale(.1);border-radius:60px;transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .25s ease,border-radius .4s ease,visibility 0s .4s}',
+        '.cb-panel{position:fixed;bottom:156px;left:20px;z-index:3000;width:360px;max-width:calc(100vw - 24px);height:560px;max-height:calc(100vh - 256px);max-height:calc(100dvh - 256px);display:flex;flex-direction:column;overflow:hidden;direction:rtl;font-family:inherit;color:var(--cb-text);background:var(--cb-glass);-webkit-backdrop-filter:blur(18px) saturate(1.5);backdrop-filter:blur(18px) saturate(1.5);border:1px solid var(--cb-line);box-shadow:0 22px 55px rgba(0,0,0,.3),inset 0 1px 0 rgba(255,255,255,.4);transform-origin:bottom left;opacity:0;visibility:hidden;pointer-events:none;transform:scale(.1);border-radius:60px;transition:transform .4s cubic-bezier(.4,0,.2,1),opacity .25s ease,border-radius .4s ease,visibility 0s .4s}',
         '.cb-panel.cb-open{opacity:1;visibility:visible;pointer-events:auto;transform:scale(1);border-radius:22px;transition:transform .75s cubic-bezier(.34,1.45,.64,1),opacity .3s ease,border-radius .75s ease,visibility 0s}',
 
         '.cb-blob{position:absolute;border-radius:50%;filter:blur(30px);opacity:.38;pointer-events:none;animation:cb-float 9s ease-in-out infinite}',
@@ -263,11 +263,11 @@
         '@keyframes cb-chip-in{from{opacity:0;transform:translateY(14px) scale(.85)}to{opacity:1;transform:none}}',
         '@keyframes cb-chip-out{to{opacity:0;transform:scale(.8) translateY(-8px)}}',
         '@keyframes cb-trail-in{0%{transform:scale(0);opacity:0}55%{transform:scale(1.3);opacity:1}78%{transform:scale(.9)}100%{transform:scale(1);opacity:1}}',
-        '@keyframes cb-trail-out{0%{transform:scale(1);opacity:1}100%{transform:scale(1.6);opacity:0}}',
-        '@keyframes cb-trail-last{0%{transform:scale(1);opacity:1}100%{transform:scale(2.6);opacity:0}}',
+        '@keyframes cb-trail-out{0%{transform:scale(1);opacity:1}100%{transform:scale(0);opacity:0}}',
+        '@keyframes cb-trail-float{0%,100%{translate:0 0}50%{translate:0 -3px}}',
 
         /* الموبايل */
-        '@media (max-width:700px){.cb-toggle{left:12px;bottom:14px;width:56px;height:56px}.cb-teaser{left:12px;bottom:80px;max-width:210px}.cb-panel{left:12px;right:12px;width:auto;max-width:none;bottom:82px;height:calc(100vh - 190px);height:calc(100dvh - 190px);max-height:560px}.cb-msg{font-size:14.5px}.cb-head-name{font-size:15px}}',
+        '@media (max-width:700px){.cb-toggle{left:12px;bottom:14px;width:56px;height:56px}.cb-teaser{left:12px;bottom:80px;max-width:210px}.cb-panel{left:12px;right:12px;width:auto;max-width:none;bottom:142px;height:calc(100vh - 232px);height:calc(100dvh - 232px);max-height:560px}.cb-msg{font-size:14.5px}.cb-head-name{font-size:15px}}',
 
         /* لو الجهاز طالب تقليل الحركة */
         '@media (prefers-reduced-motion:reduce){.cb-toggle,.cb-toggle::before,.cb-blob,.cb-msg,.cb-chip,.cb-links,.cb-dot,.cb-teaser,.cb-item{animation:none!important}.cb-panel,.cb-panel.cb-open{transition:opacity .2s ease,visibility 0s!important}}'
@@ -1109,62 +1109,102 @@
 
     // ---------- الفتح: فقاعات بتكبر لحد ما تبقى الشات ----------
 
-    var TRAIL = [
-        { x: 4,  y: -50,  s: 9 },
-        { x: 14, y: -92,  s: 14 },
-        { x: 30, y: -140, s: 21 },
-        { x: 54, y: -196, s: 31 },
-        { x: 86, y: -262, s: 45 }
-    ];
-
-    var TRAIL_STEP = 95;
-    var TRAIL_TIME = (TRAIL.length - 1) * TRAIL_STEP + 260;
+    var TRAIL_SIZES = [8, 12, 17, 24];
+    var TRAIL_STEP = 110;
+    var TRAIL_TIME = (TRAIL_SIZES.length - 1) * TRAIL_STEP + 300;
     var trailNodes = [];
 
-    function growTrail() {
+    // أماكن الفقاعات: من الزرار لحد أسفل الصندوق، بتكبر وهي طالعة
+    function trailPoints() {
         var rect = toggle.getBoundingClientRect();
         var cx = rect.left + rect.width / 2;
         var cy = rect.top + rect.height / 2;
+        var r = rect.width / 2;
 
-        var f = Math.max(0.45, Math.min(1, (cy - 110) / 262));
-        var last = { x: cx, y: cy };
+        var cs = window.getComputedStyle(panel);
+        var panelBottomY = window.innerHeight - (parseFloat(cs.bottom) || 0);
 
+        var n = TRAIL_SIZES.length;
+        var lastSize = TRAIL_SIZES[n - 1];
+
+        var startX = cx + r * 0.75;
+        var startY = cy - r - 8;
+        var endX = cx + r * 3.4;
+        var endY = panelBottomY + 5 + lastSize / 2;
+
+        if (endY > startY - 24) {
+            endY = startY - 24;
+        }
+
+        var points = [];
+
+        for (var i = 0; i < n; i++) {
+            var t = n === 1 ? 1 : i / (n - 1);
+
+            points.push({
+                x: startX + (endX - startX) * t,
+                y: startY + (endY - startY) * t
+            });
+        }
+
+        return points;
+    }
+
+    function layoutTrail() {
+        var points = trailPoints();
+
+        trailNodes.forEach(function (node, i) {
+            var s = TRAIL_SIZES[i];
+            node.style.left = (points[i].x - s / 2) + "px";
+            node.style.top = (points[i].y - s / 2) + "px";
+        });
+
+        return points[points.length - 1];
+    }
+
+    function removeTrailNow() {
+        trailNodes.forEach(function (node) { node.remove(); });
         trailNodes = [];
+    }
 
-        TRAIL.forEach(function (t, i) {
-            var x = cx + t.x * f;
-            var y = cy + t.y * f;
+    function growTrail() {
+        removeTrailNow();
 
+        TRAIL_SIZES.forEach(function (s, i) {
             var node = el("span", "cb-trail");
-            node.style.width = t.s + "px";
-            node.style.height = t.s + "px";
-            node.style.left = (x - t.s / 2) + "px";
-            node.style.top = (y - t.s / 2) + "px";
-            node.style.animationDelay = (i * TRAIL_STEP) + "ms";
+
+            node.style.width = s + "px";
+            node.style.height = s + "px";
+            node.style.animationDelay =
+                (i * TRAIL_STEP) + "ms, " + (i * TRAIL_STEP + 500) + "ms";
 
             document.body.appendChild(node);
             trailNodes.push(node);
-
-            last = { x: x, y: y };
         });
 
-        return last;
+        return layoutTrail();
     }
 
-    function fadeTrail() {
+    // لما الشات يتقفل الفقاعات بتختفي معاه، الكبيرة الأول
+    function removeTrail() {
         var nodes = trailNodes;
+        var n = nodes.length;
+
         trailNodes = [];
 
         nodes.forEach(function (node, i) {
+            var wait = (n - 1 - i) * 70;
+
+            node.style.animationDelay = wait + "ms";
             node.classList.add("cb-trail-out");
 
-            if (i === nodes.length - 1) {
-                node.classList.add("cb-trail-last");
-            }
-
-            setTimeout(function () { node.remove(); }, 800);
+            setTimeout(function () { node.remove(); }, wait + 450);
         });
     }
+
+    window.addEventListener("resize", function () {
+        if (trailNodes.length) layoutTrail();
+    });
 
     // الصندوق يطلع من مكان آخر فقاعة
     function setOrigin(x, y) {
@@ -1226,11 +1266,10 @@
         }
 
         var last = growTrail();
-        sounds.trail(TRAIL.length);
+        sounds.trail(TRAIL_SIZES.length);
 
         setTimeout(function () {
             revealPanel(last);
-            fadeTrail();
             opening = false;
         }, TRAIL_TIME);
     }
@@ -1247,6 +1286,7 @@
         toggle.setAttribute("aria-expanded", "false");
         toggle.setAttribute("aria-label", "فتح المحادثة");
 
+        removeTrail();
         sounds.close();
     }
 
