@@ -1,6 +1,6 @@
 // =========================================================
 // شات بوت قصة بطل - أسئلة جاهزة + فهم كتابة الزوار + بحث في الحلقات
-// محادثات محفوظة + سجل المحادثات + تسجيل الأسئلة اللي ملهاش إجابة
+// محادثات محفوظة + سجل المحادثات
 // =========================================================
 
 (function () {
@@ -47,9 +47,12 @@
         { url: "ramadan.html", label: "قصص رمضان" }
     ];
 
-    // رابط Google Apps Script اللي بيسجل الأسئلة في الجدول.
-    // سيبه فاضي لحد ما تركبه، والبوت وقتها مش هيقول للزائر إن سؤاله اتسجل.
-    var QUESTION_ENDPOINT = "https://script.google.com/macros/s/AKfycbxoyHPWBymjhkpZH6xtXsjtkZoTFv90ziBTxz7R4XkEyIII4EOddHo6PCiqed-azWiqOg/exec";
+    // رابط الذكاء الاصطناعي (Cloudflare Worker). الصقه هنا بعد ما تنشره.
+    // لو سيبته فاضي، البوت بيرد بالرسالة العادية من غير ذكاء اصطناعي.
+    var AI_ENDPOINT = "https://qessat-ai.hema6464640.workers.dev/";
+
+    // أقصى عدد أسئلة للذكاء الاصطناعي في الجلسة الواحدة (عشان الحصة المجانية)
+    var AI_MAX = 6;
 
 
     // ---------- الكلام (غيّره زي ما تحب) ----------
@@ -111,12 +114,6 @@
             links: socialLinks,
             strong: ["اتابعكم", "اتابعكو", "تابعكم", "متابعتكم", "روابطكم", "حساباتكم", "صفحتكم", "قناتكم", "قناتكو", "فيسبوك", "فيس بوك", "يوتيوب", "تيك توك", "تيكتوك", "واتساب", "واتس", "انستجرام", "اشترك", "اشتراك", "سوشيال"],
             kw: ["اتابع", "متابعه", "فولو", "روابط", "صفحه", "حسابات", "تابعنا"]
-        },
-        {
-            q: "عايز أكتب تعليق 💬",
-            a: "اتفضل اكتب تعليقك أو رأيك في الخانة اللي تحت، وهيوصل لمحمد إسماعيل 🤍\n" +
-               "ومن فضلك ماتكتبش رقمك أو بيانات خاصة، لأننا مش بنحتاجها.",
-            onAsk: function () { awaiting = "تعليق"; }
         }
     ];
 
@@ -643,10 +640,6 @@
     barRow.appendChild(sendBtn);
     bar.appendChild(barRow);
 
-    if (QUESTION_ENDPOINT) {
-        bar.appendChild(el("div", "cb-note", "الأسئلة اللي ماعرفش أجاوبها والتعليقات بتتسجل عشان نشوفها 📝"));
-    }
-
     // شاشة البحث
     var sbox = el("div", "cb-history cb-search");
 
@@ -710,7 +703,6 @@
 
     function resetView() {
         epoch++;
-        awaiting = "";
         busy = false;
         setBusy(false);
         setStatus(false);
@@ -919,46 +911,6 @@
         } catch (error) {
             // تجاهل
         }
-    }
-
-
-    // ---------- تسجيل الأسئلة اللي البوت ماعرفش يجاوبها ----------
-
-    var loggedKeys = {};
-    var logCount = 0;
-
-    // بترجّع true لو فيه مكان بيستقبل الأسئلة (يعني نقدر نقول للزائر إنها اتسجلت)
-    function logUnanswered(text, type) {
-        if (!QUESTION_ENDPOINT) return false;
-
-        var clean = String(text).replace(/\s+/g, " ").trim().slice(0, 300);
-        if (!clean) return true;
-
-        var key = type + "|" + norm(clean);
-
-        if (loggedKeys[key] || logCount >= 10) return true;
-
-        loggedKeys[key] = true;
-        logCount++;
-
-        try {
-            fetch(QUESTION_ENDPOINT, {
-                method: "POST",
-                mode: "no-cors",
-                headers: { "Content-Type": "text/plain;charset=utf-8" },
-                body: JSON.stringify({
-                    type: type,
-                    text: clean,
-                    page: location.pathname,
-                    time: new Date().toISOString()
-                })
-            }).catch(function () { /* تجاهل */ });
-        } catch (error) {
-            // تجاهل
-        }
-
-        track("chatbot_unanswered", { type: type });
-        return true;
     }
 
 
@@ -1181,7 +1133,7 @@
 
     // ---------- كلام الناس العادي (ردود جاهزة) ----------
     // phrases: جمل بيدور عليها جوه الرسالة | exact: كلمات لازم تتكتب لوحدها (رسالة قصيرة)
-    // act: suggest = اقتراح، log = مشكلة بتتسجل، recommend = يرشّح حلقات
+    // act: recommend = يرشّح حلقات
 
     var CHAT = [
         { id: "bye", phrases: ["مع السلامه", "باي", "تصبح علي خير", "في امان الله", "الي اللقاء", "همشي", "استاذنك", "سلام يا"],
@@ -1194,7 +1146,7 @@
           replies: ["أنا مساعد آلي اتعملت مخصوص لموقع قصة بطل 🤖", "بجاوب على أسئلتك وبدورلك على الحلقات. والموقع نفسه بتاع محمد إسماعيل."] },
 
         { id: "robot", phrases: ["انت روبوت", "انت بوت", "انت انسان", "انت بني ادم", "انت حقيقي", "انت ذكاء اصطناعي", "انت شات جي بي تي", "انت جيمني", "انت بشر", "حد بيكلمني", "انت بتفهم"],
-          replies: ["أنا مساعد آلي مش إنسان 🤖 بوت بسيط بفهم كلام كتير، بس مش ذكاء اصطناعي كامل.", "ولو سؤالك صعب عليا، بسجله وهيتضاف هنا قريب إن شاء الله."] },
+          replies: ["أنا مساعد آلي مش إنسان 🤖 بجاوب على أسئلتك عن الموقع، وبستعين بالذكاء الاصطناعي في الأسئلة اللي ملهاش رد جاهز.", "ولو سؤالك صعب عليا، جرّب تدوس على 🔍 وتدور باسم الصحابي أو الدرس."] },
 
         { id: "can", phrases: ["تقدر تعمل ايه", "انت بتعمل ايه", "بتعرف تعمل ايه", "ممكن تساعدني", "ساعدني", "محتاج مساعده", "عايز مساعده", "مساعده", "بتعرف ايه", "ايه امكانياتك"],
           replies: ["أقدر أرد على أسئلتك عن الموقع، وأدورلك على أي صحابي أو قصة أو درس 🔍", "جرّب اكتب اسم صحابي، أو دوس على الأسئلة اللي تحت."] },
@@ -1215,13 +1167,13 @@
           replies: ["اللهم اغفر لنا ولك، وارزقنا الهداية والتوفيق 🤍 وربنا يسعدك."] },
 
         { id: "problem", phrases: ["مش شغال", "مش بيفتح", "بيهنج", "بطيء", "بطئ", "بيقفل", "مش بيحمل", "مش بيشتغل", "فيه مشكله", "في مشكله", "عندي مشكله", "مش راضي يفتح", "الفيديو مش شغال", "الرابط مش شغال"],
-          act: "log", replies: ["آسفين على ده 🙏 جرّب تعمل ريفرش للصفحة وتتأكد من النت."] },
+          replies: ["آسفين على ده 🙏 جرّب تعمل ريفرش للصفحة وتتأكد من النت."] },
 
         { id: "comment", phrases: ["تعليق", "اعلق", "اكتب تعليق", "عايز اعلق", "رايي", "عندي رايي", "ملاحظه", "عندي ملاحظه"],
-          act: "suggest", kind: "تعليق", replies: [] },
+          links: "social", replies: ["يسعدنا رأيك 🤍 ابعته لنا على صفحاتنا في السوشيال."] },
 
         { id: "suggest", phrases: ["اقتراح", "اقترح", "اقتراحي", "عايز اقترح", "عندي فكره", "عندي اقتراح", "ياريت تعملوا", "ياريت تعمل"],
-          act: "suggest", replies: [] },
+          links: "social", replies: ["يسعدنا اقتراحك 💡 ابعته لنا على صفحاتنا في السوشيال."] },
 
         { id: "contact", phrases: ["تواصل", "اكلم محمد", "اكلمكم", "ابعتلكم", "رقمك", "رقم تليفون", "ايميلك", "ايميل", "عايز اكلم", "كلم محمد"],
           links: "social", replies: ["أفضل طريقة تتواصل بيها معانا من صفحاتنا على السوشيال 🤍"] },
@@ -1573,7 +1525,6 @@
             var q = sInput.value.trim();
 
             if (q.length >= 3 && lastCount === 0) {
-                logUnanswered(q, "بحث");
                 track("chatbot_search", { result: "miss" });
             } else if (lastCount > 0) {
                 track("chatbot_search", { result: "hit" });
@@ -1617,23 +1568,93 @@
             return;
         }
 
-        var logged = logUnanswered(text, "شات");
-
-        if (logged) {
-            botSequence([
-                "ماعرفتش أجاوب على سؤالك دلوقتي 🙏",
-                "سؤالك اتسجل عندي ✅ وهيتم إضافة إجابته هنا قريبًا إن شاء الله.",
-                "وفي الوقت ده تقدر تدوس على 🔍 وتدور باسم الصحابي أو الدرس."
-            ], null, renderTray);
-        } else {
-            botSequence([
-                "ماعرفتش أجاوب على سؤالك دلوقتي 🙏",
-                "جرّب تدوس على 🔍 وتدور باسم الصحابي أو الدرس، أو اختار من الأسئلة اللي تحت."
-            ], null, renderTray);
+        if (AI_ENDPOINT && aiCount < AI_MAX) {
+            askAI(text);
+            return;
         }
+
+        missReply();
     }
 
-    var awaiting = "";
+    function missReply() {
+        botSequence([
+            "ماعرفتش أجاوب على سؤالك دلوقتي 🙏",
+            "جرّب تدوس على 🔍 وتدور باسم الصحابي أو الدرس، أو اختار من الأسئلة اللي تحت."
+        ], null, renderTray);
+    }
+
+
+    // ---------- الذكاء الاصطناعي (لو السؤال ملوش رد جاهز) ----------
+
+    var aiCount = 0;
+
+    function askAI(text) {
+        var myEpoch = epoch;
+        var finished = false;
+
+        aiCount++;
+        busy = true;
+        setBusy(true);
+
+        var typing = showTyping();
+        setStatus(true);
+
+        var list = episodes.slice(0, 60).map(function (e) {
+            return {
+                t: shorten(e.title, 90),
+                c: shorten(cleanName(e.cat), 40),
+                d: shorten(e.desc, 70)
+            };
+        });
+
+        var controller = typeof AbortController === "function" ? new AbortController() : null;
+
+        var timer = setTimeout(function () {
+            if (controller) controller.abort();
+            finish("");
+        }, 15000);
+
+        function finish(answer) {
+            if (finished) return;
+            finished = true;
+            clearTimeout(timer);
+
+            if (myEpoch !== epoch) return;
+
+            typing.remove();
+            setStatus(false);
+            busy = false;
+            setBusy(false);
+
+            track("chatbot_ai", { result: answer ? "answer" : "fail" });
+
+            if (!answer) {
+                missReply();
+                return;
+            }
+
+            botSequence([answer], null, renderTray);
+        }
+
+        try {
+            fetch(AI_ENDPOINT, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ question: text, episodes: list }),
+                signal: controller ? controller.signal : undefined
+            })
+                .then(function (r) {
+                    if (!r.ok) throw new Error("bad");
+                    return r.json();
+                })
+                .then(function (data) {
+                    finish(data && typeof data.answer === "string" ? data.answer.trim() : "");
+                })
+                .catch(function () { finish(""); });
+        } catch (error) {
+            finish("");
+        }
+    }
 
     function shuffle(list) {
         var a = list.slice();
@@ -1653,26 +1674,6 @@
 
         var replies = ce.replies.slice();
         var links = ce.links === "social" ? socialLinks : null;
-
-        if (ce.act === "suggest") {
-            var kind = ce.kind || "اقتراح";
-
-            if (QUESTION_ENDPOINT) {
-                awaiting = kind;
-                replies = kind === "تعليق"
-                    ? ["اتفضل اكتب تعليقك دلوقتي 💬 وهيوصل لمحمد إسماعيل.", "ومن فضلك ماتكتبش رقمك أو بيانات خاصة."]
-                    : ["اتفضل اكتب اقتراحك دلوقتي 💡 وهيتسجل عشان نشوفه."];
-            } else {
-                replies = ["يسعدنا رأيك 💡 ابعته لنا على صفحاتنا في السوشيال."];
-                links = socialLinks;
-            }
-        }
-
-        if (ce.act === "log") {
-            if (logUnanswered(text, "مشكلة")) {
-                replies.push("وسجلت ملاحظتك عشان تتراجع ✅");
-            }
-        }
 
         if (ce.act === "recommend") {
             var myEpoch = epoch;
@@ -1726,24 +1727,6 @@
 
         var n = norm(text);
         var tk = n.split(" ");
-
-        // رد على اقتراح الزائر (بعد ما قال عايز يقترح)
-        if (awaiting) {
-            var waitKind = awaiting;
-            awaiting = "";
-
-            // لو غيّر رأيه
-            if (tk.length <= 2 && hasAny(n, tk, ["الغي", "لا", "خلاص", "مش عايز", "سيبك"].map(norm))) {
-                botSequence(["تمام 🤍 لو حبيت تكتب تعليق في أي وقت، دوس على (عايز أكتب تعليق)."], null, renderTray);
-                return;
-            }
-
-            logUnanswered(text, waitKind);
-            botSequence([waitKind === "تعليق"
-                ? "شكرًا على تعليقك 🤍 وصل لمحمد إسماعيل وهيقراه إن شاء الله."
-                : "شكرًا على اقتراحك 🤍 وصلني وهنشوفه إن شاء الله."], null, renderTray);
-            return;
-        }
 
         // كلام الناس العادي
         var ce = matchChat(n, tk);
@@ -1899,9 +1882,6 @@
             setTimeout(function () { setTicks(ticks, "read"); }, 950);
 
             track("chatbot_question", { index: index });
-
-            awaiting = "";
-            if (item.onAsk) item.onAsk();
 
             botSequence([textOf(item.a)], item.links, afterAnswer);
         }, 240);
